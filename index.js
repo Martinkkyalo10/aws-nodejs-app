@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Parses the text as json
 app.use(bodyParser.json());
-
+// get user
 app.get("/", (req, res) => {
   res.send("Hello World, from express");
 });
-
+// create user
 app.post("/addUser", async (req, res) => {
   let collection = await db.collection("users");
   let newDocument = req.body;
@@ -31,7 +31,7 @@ app.post("/addUser", async (req, res) => {
   console.log("rreq" + req.body);
   res.send(result).status(204);
 });
-
+// read users
 app.get("/getUsers", async (req, res) => {
   let collection = await db.collection("users");
   let results = await collection
@@ -40,6 +40,10 @@ app.get("/getUsers", async (req, res) => {
     .toArray();
   res.send(results).status(200);
 });
+
+// update users
+// delete users
+// sort users
 
 app.listen(port, function () {
   console.log("Server is listening at port:" + port);
